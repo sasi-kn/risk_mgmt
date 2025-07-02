@@ -2,3 +2,4 @@
 *.xlsx
 *.cvs
 *.env
+*.DS_Store
