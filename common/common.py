@@ -73,7 +73,7 @@ def get_excel_data(file_name,sheet_name,data_range):
 
 def update_excel(file_name,sheet_name,df):
     
-    sa = gspread.service_account(filename="riskmgmt-459617-50039f11332f.json")
+    sa = gspread.service_account(filename="credentials.json")
     #open the google spreadsheet 
     sh = sa.open(file_name)
     #select the first sheet 
