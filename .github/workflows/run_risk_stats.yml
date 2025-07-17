@@ -1,1 +1,23 @@
+name: Schedule Token Risk Stats
+
+on:
+  schedule:
+    - cron: '*/2 * * * *' 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9' # Specify your desired Python version
+
+      - name: Run Python script
+        env:
+          API_KEY: ${{ secrets.COINMCAP_API_KEY }}
+        run: python Token_Stats.py 
 
