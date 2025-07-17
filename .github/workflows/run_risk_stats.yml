@@ -25,7 +25,7 @@ jobs:
       - name: Set up Python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x' # Specify your desired Python version
+          python-version: '3.9' # Specify your desired Python version
       
       - name: Install Google API client libraries
         run: pip install google-auth google-api-python-client
