@@ -5,7 +5,7 @@ import numpy as np
 from datetime import datetime
 #from dotenv import load_dotenv
 #load_dotenv()
-api_key = os.environ('API_KEY')
+api_key = os.environ['API_KEY']
 
 import gspread
 import gspread_dataframe
