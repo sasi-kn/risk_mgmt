@@ -3,9 +3,9 @@ import requests
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from dotenv import load_dotenv
-load_dotenv()
-api_key = os.getenv('api_key')
+#from dotenv import load_dotenv
+#load_dotenv()
+api_key = os.environ('API_KEY')
 
 import gspread
 import gspread_dataframe
@@ -13,7 +13,6 @@ from gspread_dataframe import set_with_dataframe
 
 from snowflake.connector import connect
 from snowflake.connector.pandas_tools import write_pandas
-
 
 def unixtodate(x):
     dt = datetime.fromtimestamp(x).strftime('%m/%d/%Y')
