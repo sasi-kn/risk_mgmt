@@ -13,11 +13,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      - name: Cache Python dependencies
+        id: cache-pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip # Or the virtual environment directory for pipenv/poetry
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }} # Example key for pip
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            
       - name: Set up Python environment
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9' # Specify your desired Python version
+          python-version: '3.x' # Specify your desired Python version
       
       - name: Install Google API client libraries
         run: pip install google-auth google-api-python-client
@@ -26,7 +34,8 @@ jobs:
     
       - name: Install dependencies (if any)
         run: pip install -r requirements.txt
-
+        if: steps.cache-pip.outputs.cache-hit != 'true'
+        
       - name: Run Python script
         env:
           API_KEY: ${{ secrets.COINMCAP_API_KEY }}
