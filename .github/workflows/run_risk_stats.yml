@@ -13,14 +13,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Cache Python dependencies
-        id: cache-pip
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip # Or the virtual environment directory for pipenv/poetry
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }} # Example key for pip
-          restore-keys: |
-            ${{ runner.os }}-pip-
             
       - name: Set up Python environment
         uses: actions/setup-python@v5
