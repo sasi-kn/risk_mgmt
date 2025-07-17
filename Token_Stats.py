@@ -3,12 +3,12 @@ warnings.filterwarnings("ignore")
 import os
 import pandas as pd
 import numpy as np
-from common.common import *
+#from common.common import *
 
 import datetime
 from datetime import datetime, date, timedelta
-import schedule
-import time
+#import schedule
+#import time
 
 #coinmarketcap api key
 api_key = os.environ['API_KEY']
