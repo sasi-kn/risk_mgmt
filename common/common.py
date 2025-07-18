@@ -62,7 +62,7 @@ def convert_to_float(value):
     return float(value.replace(",","").replace("$",""))
 
 def get_excel_data(file_name,sheet_name,data_range):
-    sa = gspread.service_account(filename="riskmgmt-459617-50039f11332f.json")
+    sa = gspread.service_account(filename="credentials.json")
     sheet = sa.open(file_name)
     work_sheet = sheet.worksheet(sheet_name)
 
