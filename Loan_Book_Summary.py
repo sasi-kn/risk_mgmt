@@ -46,6 +46,7 @@ def get_loan_summary():
     flags =['Jan_Active','Feb_Active','Mar_Active','Apr_Active','May_Active','Jun_Active','Jul_Active']
     history = pd.concat([get_grouped(x,active) for x in flags],axis=0)[['Type','Side','Desk','WithinEntity','Counterparty','Trade #','LoanExposure','Rate','Flag','Currency']]
     update_excel('Risk Management Master','Lend_Borrow_History',history)
+    print('updated lend borrow history sheet at: ' + str(datetime.now())[:-7])
 
 if __name__ == "__main__":
     get_loan_summary()
