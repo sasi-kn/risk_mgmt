@@ -23,8 +23,8 @@ def get_active_book(data):
     active['Jul_Active'] = np.where(active['Origination Date'] <= dt, active['End Date'].apply( lambda x: dt_format if x== "Open" else ( dt_format if x >= datetime.strptime(dt, "%Y-%m-%d") else 0)),0)
     return active[['Type','Side','Desk','Currency','WithinEntity','Counterparty','Trade #','LoanExposure','Rate','Jan_Active','Feb_Active','Mar_Active','Apr_Active','May_Active','Jun_Active','Jul_Active']]
 
-def get_grouped(flag):
-    data = active[active[flag]!=0]
+def get_grouped(flag,df):
+    data = df[df[flag]!=0]
     grouped = data.groupby(['Type','Side','Desk','WithinEntity','Counterparty','Trade #','Currency'])[['LoanExposure','Rate']].sum().reset_index()
     grouped['Flag'] = data[flag].unique()[0]
     return grouped
@@ -44,7 +44,7 @@ def get_loan_summary():
     
     active = pd.concat([get_active_book(lend_final),get_active_book(borrow_final),get_active_book(unsecured_final)],axis=0)
     flags =['Jan_Active','Feb_Active','Mar_Active','Apr_Active','May_Active','Jun_Active','Jul_Active']
-    history = pd.concat([get_grouped(x) for x in flags],axis=0)[['Type','Side','Desk','WithinEntity','Counterparty','Trade #','LoanExposure','Rate','Flag','Currency']]
+    history = pd.concat([get_grouped(x,active) for x in flags],axis=0)[['Type','Side','Desk','WithinEntity','Counterparty','Trade #','LoanExposure','Rate','Flag','Currency']]
     update_excel('Risk Management Master','Lend_Borrow_History',history)
 
 if __name__ == "__main__":
