@@ -130,7 +130,7 @@ def token_stats():
     
     top_token_list = list(market_stats[market_stats.cmc_rank <=14]['symbol'])
     # Elements to remove
-    remove = {'USDT','USDC','BNB','XRP','HYPE','TRX'}
+    remove = {'USDT','USDC','BNB','HYPE','TRX'}
     # Remove elements using filter
     top_token_list = list(filter(lambda x: x not in remove, top_token_list))
     TOP_TOKENS = top_token_list
