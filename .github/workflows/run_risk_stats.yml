@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/2 * * * *' 
+    - cron: '*/60 * * * *' 
 
 jobs:
   build:
@@ -39,5 +39,5 @@ jobs:
       - name: Run Python script
         env:
           API_KEY: ${{ secrets.COINMCAP_API_KEY }}
-        run: python Token_Stats.py 
+        run: python Token_Stats_Depth_Drawdowns.py 
 
