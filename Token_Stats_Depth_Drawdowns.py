@@ -218,6 +218,7 @@ def token_stats():
     final_stats = pd.merge(market_stats,pd.merge(depth_2pct,volume,on='symbol',suffixes=('_depth2pct', '_volume_usd')),on='symbol')
     final = pd.merge(final_stats,worst_moves,on='symbol')
     update_excel('Risk Management Master','Token_Stats',final)
-
+    print('updated token stats sheet at: ' + str(datetime.now())[:-7])
+    
 if __name__ == "__main__":
     token_stats()
