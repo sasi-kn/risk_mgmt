@@ -4,18 +4,14 @@ import os
 import pandas as pd
 import numpy as np
 from common.common import *
-from src.lend_borrow import *
+#from src.lend_borrow import *
 
-import schedule
-import time
 import datetime
 from datetime import datetime, date, timedelta
 import requests
 
-
 #coinmarketcap api key
-api_key = 'e9051a51-d06e-4e87-9e26-d0c72ae79d2a'
-coinapi_key = '03a999a3-a01e-478c-bcd7-7b0b4a943b5c'
+api_key = os.environ['API_KEY']
 
 def get_coinmarketcap_data():
     url = f"https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY={api_key}"
@@ -223,9 +219,8 @@ def token_stats():
     final = pd.merge(final_stats,worst_moves,on='symbol')
     update_excel('Risk Management Master','Token_Stats',final)
 
-# Schedule the job to run every 5 seconds
-schedule.every(1200).seconds.do(token_stats)
-
+if __name__ == "__main__":
+    token_stats()
 # Main loop to run pending scheduled jobs
 while True:
     schedule.run_pending()
