@@ -221,7 +221,3 @@ def token_stats():
 
 if __name__ == "__main__":
     token_stats()
-# Main loop to run pending scheduled jobs
-while True:
-    schedule.run_pending()
-    time.sleep(120) # Sleep to avoid high CPU usage
